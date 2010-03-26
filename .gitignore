@@ -1,0 +1,7 @@
+Rakefile
+docs
+*.swf
+.actionScriptProperties
+.flexLibProperties
+.project
+.settings
