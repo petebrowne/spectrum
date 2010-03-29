@@ -95,7 +95,7 @@ package org.spectrum.reporters {
 		 * @see spectrum.core.IReporter#passed
 		 */	
 		public function passed(example:IExample):void {
-			addResult(example, color('PASSED', 'green'));
+			addResult(example, '');
 			passedCount++;
 			checkFinished();
 		}
@@ -104,7 +104,7 @@ package org.spectrum.reporters {
 		 * @see spectrum.core.IReporter#failed
 		 */	
 		public function failed(example:IExample, message:String):void {
-			addResult(example, color('FAILED', 'red'), message);
+			addResult(example, 'FAILED', message);
 			failedCount++;
 			checkFinished();
 		}
@@ -113,7 +113,7 @@ package org.spectrum.reporters {
 		 * @see spectrum.core.IReporter#pending
 		 */		
 		public function pending(example:IExample):void {
-			addResult(example, color('PENDING', 'yellow'));
+			addResult(example, 'PENDING');
 			pendingCount++;
 			checkFinished();
 		}
@@ -141,22 +141,21 @@ package org.spectrum.reporters {
 			for (var i:int = 0; i < characterLimit; i++) {
 				line += '-';
 			}
-			line = color(line, failedCount ? 'red' : 'green');
 			
 			trace('');
 			trace(line);
 			for each (var specReport:SpecReport in specReports) {
 				trace('');
-				trace('  ' + color(specReport.name, 'yellow'));
+				trace('  ' + specReport.name);
 				for each (var result:String in specReport.results) {
 					trace(result);
 				}
 			}
 			trace('');
 			trace(line);
-			trace(color('  Passed   ', 'green')  + passedCount);
-			trace(color('  Failed   ', 'red')    + failedCount);
-			trace(color('  Pending  ', 'yellow') + pendingCount);
+			trace('  Passed   ' + passedCount);
+			trace('  Failed   ' + failedCount);
+			trace('  Pending  ' + pendingCount);
 			trace(line);
 			trace('');
 		}
@@ -165,11 +164,10 @@ package org.spectrum.reporters {
 		 * @private
 		 */		
 		protected function addResult(example:IExample, result:String, message:String = null):void {
-			result = rightAlign(getFullDescription(example), result);
+			result = rightJustify(getFullDescription(example), result);
 			if (message) {
-				result += '\n      ' + color(message, 'magenta');
+				result += '\n      ' + message;
 			}
-			
 			getSpecReport(example).results.push(result);
 		}
 		
@@ -231,34 +229,19 @@ package org.spectrum.reporters {
 			specReports.push(specReport);
 			return specReport;
 		}
-
-		/**
-		 * @private
-		 */
-		protected function color(message:String, color:String):String {
-			if (!terminal) {
-				return message;
-			}
-			
-			return "\u001B[" + {
-				black   : 30,
-				red     : 31,
-				green   : 32,
-				yellow  : 33,
-				blue    : 34,
-				magenta : 35,
-				cyan    : 36
-			}[color] + 'm' + message + "\u001B[0m";
-		}
 		
 		/**
 		 * @private
 		 */
-		protected function rightAlign(description:String, result:String):String {
-			var text:String   = '    ' + description + '  ';
-			var rightEdge:int = characterLimit - result.replace(/\u001B\[\d+m/g, '').length;
-			while (text.length < rightEdge) {
-				text += ' ';
+		protected function rightJustify(description:String, result:String):String {
+			var text:String   = '    ' + description;
+			if (result == '') {
+				return text;
+			}
+			text  += ' ';
+			result = ' ' + result;
+			while (text.length < (characterLimit - result.length)) {
+				text += '.';
 			}
 			return text + result;
 		}

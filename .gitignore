@@ -1,5 +1,6 @@
 Rakefile
 docs
+*-launch.xml
 *.swf
 .actionScriptProperties
 .flexLibProperties

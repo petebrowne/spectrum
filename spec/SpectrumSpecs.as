@@ -16,7 +16,6 @@ package {
 		public function SpectrumSpecs() {
 			runner = new Suite();
 			runner.reporter = new TraceReporter({
-				terminal       : true,
 				characterLimit : 85
 			});
 			runner.addSpecs(
