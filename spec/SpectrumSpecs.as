@@ -11,14 +11,14 @@ package {
 
 	public class SpectrumSpecs extends Sprite {
 		
-		protected var runner:Suite;
+		protected var suite:Suite;
 		
 		public function SpectrumSpecs() {
-			runner = new Suite();
-			runner.reporter = new TraceReporter({
+			suite = new Suite();
+			suite.reporter = new TraceReporter({
 				characterLimit : 85
 			});
-			runner.addSpecs(
+			suite.addSpecs(
 				MatcherSpec,
 				BeSpec,
 				BeASpec,
@@ -36,7 +36,7 @@ package {
 				ExampleGroupSpec,
 				SpecSpec
 			);
-			runner.run();
+			suite.run();
 		}
 		
 	}
