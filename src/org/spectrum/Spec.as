@@ -62,6 +62,18 @@ package org.spectrum {
 		}
 		
 		/**
+		 * Alias for #describe.
+		 * 
+		 * @param description
+		 * @param block
+		 * 
+		 * @see #describe
+		 */		
+		public function context(description:String, block:Function):void {
+			describe(description, block);
+		}
+		
+		/**
 		 * Creates an example of a particular behavior.
 		 *  
 		 * @param description
@@ -71,6 +83,18 @@ package org.spectrum {
 			if (currentGroup) {
 				currentGroup.addExample(new Example(description, block));
 			}
+		}
+		
+		/**
+		 * Alias for #it. Automatically prepends 'should ' to the given description.
+		 * 
+		 * @param description
+		 * @param block
+		 * 
+		 * @see #it
+		 */		
+		public function should(description:String, block:Function = null):void {
+			it('should ' + description, block);
 		}
 		
 		/**

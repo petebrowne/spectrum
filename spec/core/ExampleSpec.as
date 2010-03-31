@@ -14,7 +14,7 @@ package core {
 		
 		public function ExampleSpec() {
 			describe('#run', function():void {
-				it('should run the given implementation', function():void {
+				should('run the given implementation', function():void {
 					var implementationInvoked:Boolean = false;
 					example = new Example('', function():void {
 						implementationInvoked = true;
@@ -23,8 +23,8 @@ package core {
 					expect(implementationInvoked).to(BeTrue);
 				});
 				
-				describe('without an implementation', function():void {
-					it('should dispatch a PENDING event', function():void {
+				context('without an implementation', function():void {
+					should('dispatch a PENDING event', function():void {
 						example = new Example('');
 						expect(example)
 							.to(Dispatch, ExampleEvent.PENDING)
@@ -32,8 +32,8 @@ package core {
 					});
 				});
 				
-				describe('without any expectations', function():void {
-					it('should dispatch a PENDING event', function():void {
+				context('without any expectations', function():void {
+					should('dispatch a PENDING event', function():void {
 						example = new Example('', function():void {});
 						expect(example)
 							.to(Dispatch, ExampleEvent.PENDING)
@@ -41,8 +41,8 @@ package core {
 					});
 				});
 				
-				describe('with a passing expectation', function():void {
-					it('should dispatch a PASSED event', function():void {
+				context('with a passing expectation', function():void {
+					should('dispatch a PASSED event', function():void {
 						example = new Example('', function():void {});
 						
 						expectation = new Expectation(null);
@@ -55,8 +55,8 @@ package core {
 					});
 				});
 				
-				describe('with multiple passing expectations', function():void {
-					it('should dispatch a PASSED event', function():void {
+				context('with multiple passing expectations', function():void {
+					should('dispatch a PASSED event', function():void {
 						example = new Example('', function():void {});
 						
 						expectation = new Expectation(null);
@@ -77,8 +77,8 @@ package core {
 					});
 				});
 				
-				describe('with a failing expectation', function():void {
-					it('should dispatch a FAILED event', function():void {
+				context('with a failing expectation', function():void {
+					should('dispatch a FAILED event', function():void {
 						example = new Example('', function():void {});
 						
 						expectation = new Expectation(null);

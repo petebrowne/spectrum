@@ -9,7 +9,7 @@ package core {
 		
 		public function MatcherSpec() {
 			describe('#match', function():void {
-				it('should throw an error if called', function():void {
+				should('throw an error if called', function():void {
 					expect(function():void {
 						new Matcher(null).match()
 					}).to(Throw, Error);
@@ -17,7 +17,7 @@ package core {
 			});
 			
 			describe('#failureMessage', function():void {
-				it('should throw an error if called', function():void {
+				should('throw an error if called', function():void {
 					expect(function():void {
 						new Matcher(null).failureMessage(false)
 					}).to(Throw, Error);
@@ -25,14 +25,14 @@ package core {
 			});
 			
 			describe('#run', function():void {
-				it('should dispatch TRUE if match is successful', function():void {
+				should('dispatch TRUE if match is successful', function():void {
 					var matcher:Matcher = new BeTrue(true);
 					expect(matcher).to(Dispatch, MatcherEvent.TRUE).during(function():void {
 						matcher.run();
 					});
 				});
 				
-				it('should dispatch FALSE if match is unsuccessful', function():void {
+				should('dispatch FALSE if match is unsuccessful', function():void {
 					var matcher:Matcher = new BeTrue(false);
 					expect(matcher).to(Dispatch, MatcherEvent.FALSE).during(function():void {
 						matcher.run();

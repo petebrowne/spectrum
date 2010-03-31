@@ -13,34 +13,34 @@ package core {
 		protected var exampleGroup:ExampleGroup;
 		
 		public function ExampleGroupSpec() {
-			describe('generating descriptions', function():void {
-				describe('with a string', function():void {
-					it('should use the string', function():void {
+			context('generating descriptions', function():void {
+				context('with a string', function():void {
+					should('use the string', function():void {
 						expect(new ExampleGroup('description').description).to(Equal, 'description');
 					});
 				});
 				
-				describe('with a Class', function():void {
-					it('should use the class name', function():void {
+				context('with a Class', function():void {
+					should('use the class name', function():void {
 						expect(new ExampleGroup(Sprite).description).to(Equal, 'Sprite');
 					});
 				});
 				
-				describe('with an object instance', function():void {
-					it('should use the class name', function():void {
+				context('with an object instance', function():void {
+					should('use the class name', function():void {
 						expect(new ExampleGroup(new Sprite()).description).to(Equal, 'Sprite');
 					});
 				});
 				
-				describe('with a Spec', function():void {
-					it('should remove "Spec" from the name', function():void {
+				context('with a Spec', function():void {
+					should('remove "Spec" from the name', function():void {
 						expect(new ExampleGroup(ExampleGroupSpec).description).to(Equal, 'ExampleGroup');
 					})
 				});
 			});
 			
-			describe('adding Examples', function():void {
-				it('should increase the examples count', function():void {
+			context('adding Examples', function():void {
+				should('increase the examples count', function():void {
 					exampleGroup = new ExampleGroup();
 					expect(exampleGroup.examplesCount).to(Equal, 0);
 					exampleGroup.addExample(new Example(''));
@@ -48,8 +48,8 @@ package core {
 				});
 			});
 			
-			describe('adding other ExampleGroups', function():void {
-				it('should increase the examples count', function():void {
+			context('adding other ExampleGroups', function():void {
+				should('increase the examples count', function():void {
 					var otherGroup:ExampleGroup = new ExampleGroup();
 					otherGroup.addExample(new Example(''));
 					exampleGroup = new ExampleGroup();
@@ -64,7 +64,7 @@ package core {
 					exampleGroup = new ExampleGroup();
 				});
 				
-				it('should run each Example', function():void {
+				should('run each Example', function():void {
 					var count:int = 0;
 					for (var i:int = 0; i < 5; i++) {
 						exampleGroup.addExample(new Example('', function():void {
@@ -75,7 +75,7 @@ package core {
 					expect(count).to(Equal, 5);
 				});
 				
-				it('should run each ExampleGroup', function():void {
+				should('run each ExampleGroup', function():void {
 					var count:int = 0;
 					for (var i:int = 0; i < 5; i++) {
 						var otherGroup:ExampleGroup = new ExampleGroup();
@@ -88,8 +88,8 @@ package core {
 					expect(count).to(Equal, 5);
 				});
 				
-				describe('with a failing Example', function():void {
-					it('should dispatch a FAILED event', function():void {
+				context('with a failing Example', function():void {
+					should('dispatch a FAILED event', function():void {
 						var example:Example = new Example('');
 						var expectation:Expectation = new Expectation(false);
 						expectation.to(BeTrue);
@@ -104,8 +104,8 @@ package core {
 					});
 				});
 				
-				describe('with a passing Example', function():void {
-					it('should dispatch a PASSED event', function():void {
+				context('with a passing Example', function():void {
+					should('dispatch a PASSED event', function():void {
 						var example:Example = new Example('');
 						var expectation:Expectation = new Expectation(true);
 						expectation.to(BeTrue);
@@ -120,8 +120,8 @@ package core {
 					});
 				});
 				
-				describe('with a pending Example', function():void {
-					it('should dispatch a PENDING event', function():void {
+				context('with a pending Example', function():void {
+					should('dispatch a PENDING event', function():void {
 						var example:Example = new Example('');
 						exampleGroup.addExample(example);
 						
