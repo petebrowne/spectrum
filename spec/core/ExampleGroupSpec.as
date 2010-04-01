@@ -71,7 +71,7 @@ package core {
 							count++;
 						}));
 					}
-					SpecHelper.runExamples(exampleGroup.run);
+					Helper.runExamples(exampleGroup.run);
 					expect(count).to(Equal, 5);
 				});
 				
@@ -84,7 +84,7 @@ package core {
 						}));
 						exampleGroup.addExample(otherGroup);
 					}
-					SpecHelper.runExamples(exampleGroup.run);
+					Helper.runExamples(exampleGroup.run);
 					expect(count).to(Equal, 5);
 				});
 				
@@ -99,7 +99,7 @@ package core {
 						expect(exampleGroup)
 							.to(Dispatch, ExampleEvent.FAILED)
 							.during(function():void {
-								SpecHelper.runExamples(exampleGroup.run);
+								Helper.runExamples(exampleGroup.run);
 							});
 					});
 				});
@@ -115,7 +115,7 @@ package core {
 						expect(exampleGroup)
 							.to(Dispatch, ExampleEvent.PASSED)
 							.during(function():void {
-								SpecHelper.runExamples(exampleGroup.run);
+								Helper.runExamples(exampleGroup.run);
 							});
 					});
 				});
@@ -128,7 +128,7 @@ package core {
 						expect(exampleGroup)
 							.to(Dispatch, ExampleEvent.PENDING)
 							.during(function():void {
-								SpecHelper.runExamples(exampleGroup.run);
+								Helper.runExamples(exampleGroup.run);
 							});
 					});
 				});

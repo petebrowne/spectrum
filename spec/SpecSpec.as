@@ -52,7 +52,7 @@ package {
 						spec.it('will fail', function():void {
 							throw new Error();
 						});
-						SpecHelper.runExamples(spec.run);
+						Helper.runExamples(spec.run);
 						expect(afterInvoked).to(BeTrue);
 					});
 				});

@@ -102,7 +102,7 @@ package core {
 		}
 		
 		protected function runCurrentExample():void {
-			SpecHelper.runExamples(example.run);
+			Helper.runExamples(example.run);
 		}
 		
 	}
