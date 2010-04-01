@@ -60,8 +60,10 @@ package org.spectrum {
 		 * @return
 		 */		
 		public function addSpecs(...specs):void {
-			for each (var spec:Class in specs) {
-				addExample(new spec as ExampleGroup);
+			for each (var specType:Class in specs) {
+				var spec:Spec = new specType as Spec;
+				addChild(spec);
+				addExample(spec);
 			}
 		}
 		

@@ -1,7 +1,6 @@
 package org.spectrum.core {
 	
-	import flash.events.Event;
-	import flash.events.EventDispatcher;
+	import flash.display.Sprite;
 	import flash.utils.getQualifiedClassName;
 	
 	import org.spectrum.events.ExampleEvent;
@@ -9,7 +8,7 @@ package org.spectrum.core {
 	/**
 	 * A group of Examples to test.
 	 */	
-	public class ExampleGroup extends EventDispatcher implements IExample {
+	public class ExampleGroup extends Sprite implements IExample {
 		
 		//--------------------------------------------------------------------------
 		//

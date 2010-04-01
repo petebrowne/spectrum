@@ -9,16 +9,10 @@ package {
 	import org.spectrum.Suite;
 	import org.spectrum.reporters.TraceReporter;
 
-	public class SpectrumSpecs extends Sprite {
+	public class SpectrumSuite extends Suite {
 		
-		protected var suite:Suite;
-		
-		public function SpectrumSpecs() {
-			suite = new Suite();
-			suite.reporter = new TraceReporter({
-				characterLimit : 85
-			});
-			suite.addSpecs(
+		public function SpectrumSuite() {
+			addSpecs(
 				MatcherSpec,
 				BeSpec,
 				BeASpec,
@@ -36,7 +30,7 @@ package {
 				ExampleGroupSpec,
 				SpecSpec
 			);
-			suite.run();
+			run();
 		}
 		
 	}

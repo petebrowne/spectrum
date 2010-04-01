@@ -6,6 +6,10 @@ package {
 	public class SpecSpec extends Spec {
 		
 		public function SpecSpec() {
+			should('be on the stage', function():void {
+				expect(stage).toNot(BeNull);
+			});
+			
 			describe('#describe', function():void {
 				var beforeInvoked:Boolean = false;
 				var afterInvoked:Boolean  = false;
